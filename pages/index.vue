@@ -46,6 +46,12 @@ function openEditModal(item) {
 
 const list = computed(() => {
 
+  if (filter.value === 'History') {
+    return JSON.parse(localStorage.getItem('todos_history'));
+  }
+
+  if (!todosStore.todos?.length) return [];
+
   if (todosStore.search) {
     return todosStore.todos.filter(t => t.title.toLowerCase().includes(todosStore.search.toLowerCase()))
   }
@@ -58,9 +64,7 @@ const list = computed(() => {
     return todosStore.todos.filter(t => t.status === 'Completed');
   }
 
-  if (filter.value === 'History') {
-    return JSON.parse(localStorage.getItem('todos_history'));
-  }
+
 
   return todosStore.todos;
 

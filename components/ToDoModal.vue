@@ -102,8 +102,6 @@ function addFile() {
           </UFormGroup>
 
           <div class="flex justify-between">
-            <span v-if="isEdit">ID: 123123</span>
-            <span v-if="isEdit">24.01.2024</span>
             <USelect
               v-model="priority"
               :options="todoPriorityStatuses"

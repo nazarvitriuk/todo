@@ -99,9 +99,9 @@ function toggleFavorite() {
         <UButton
           :disabled="displayOnly"
           size="xl"
-          icon="i-heroicons-pencil"
+          icon="i-line-md:edit"
           variant="ghost"
-          color="black"
+          color="white"
           @click="emits('edit')"
         />
         <UButton
@@ -109,7 +109,7 @@ function toggleFavorite() {
           size="xl"
           icon="i-heroicons-trash"
           variant="ghost"
-          color="black"
+          color="white"
           @click="emits('delete')"
         />
       </div>
@@ -123,12 +123,12 @@ function toggleFavorite() {
       </div>
 
       <div>
-        <p class="text-right">ID: {{ id }}</p>
-        <p class="text-right">{{ createdAt }}</p>
+        <p class="text-right font-bold text-cyan-800">ID: {{ id }}</p>
+        <p class="text-right font-bold text-cyan-800">{{ createdAt }}</p>
       </div>
     </div>
   </div>
-</template>
+</template> font-bold
 
 <style scoped>
 
