@@ -5,6 +5,7 @@
     </NuxtLayout>
 
     <UModals />
+    <UNotifications />
   </div>
 </template>
 

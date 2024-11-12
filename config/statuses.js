@@ -4,6 +4,18 @@ const todoCompletionStatuses = [
   'Rejected'
 ]
 
+const todoCompletionStatusesStyles = {
+  'Completed': {
+    color: '#27AE2E'
+  },
+  'In work': {
+    color: '#F5BB49'
+  },
+  'Rejected': {
+    color: '#FF6161'
+  }
+}
+
 const todoPriorityStatuses = [
   'Highest',
   'Medium',
@@ -28,5 +40,6 @@ const todoPriorityStatusesStyles = {
 export {
   todoPriorityStatuses,
   todoCompletionStatuses,
-  todoPriorityStatusesStyles
+  todoPriorityStatusesStyles,
+  todoCompletionStatusesStyles
 }

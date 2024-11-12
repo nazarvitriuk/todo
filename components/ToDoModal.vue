@@ -1,7 +1,12 @@
 <script setup>
 import { object, string } from 'yup'
 import {useTodosStore} from "~/store/todos.js";
-import { todoCompletionStatuses, todoPriorityStatuses } from "~/config/statuses.js";
+import {
+  todoCompletionStatuses,
+  todoCompletionStatusesStyles,
+  todoPriorityStatuses,
+  todoPriorityStatusesStyles
+} from "~/config/statuses.js";
 
 const props = defineProps({
   isEdit: {
@@ -94,7 +99,7 @@ function addFile() {
         </h3>
       </div>
 
-      <UForm :schema="schema" :state="state" class="space-y-4" @submit="onSubmit">
+      <UForm :schema="schema" :state="state" class="space-y-4" validate-on="submit" @submit="onSubmit">
         <div class="p-5 flex flex-col gap-5">
 
           <UFormGroup label="Title" name="title">
@@ -102,10 +107,24 @@ function addFile() {
           </UFormGroup>
 
           <div class="flex justify-between">
-            <USelect
-              v-model="priority"
-              :options="todoPriorityStatuses"
-            />
+            <USelectMenu v-model="priority"  class="flex-1 md:flex-auto" :options="todoPriorityStatuses">
+              <template #leading>
+                <UIcon
+                  class="text-xl block"
+                  :name="todoPriorityStatusesStyles[priority].icon"
+                  :style="{ 'color': todoPriorityStatusesStyles[priority].color }"
+                />
+              </template>
+
+              <template #option="{ option: option }">
+                <UIcon
+                  class="text-2xl"
+                  :name="todoPriorityStatusesStyles[option].icon"
+                  :style="{ 'color': todoPriorityStatusesStyles[option].color }"
+                />
+                {{ option }}
+              </template>
+            </USelectMenu>
           </div>
 
           <UFormGroup label="Description" name="description">

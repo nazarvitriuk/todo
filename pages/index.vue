@@ -64,10 +64,7 @@ const list = computed(() => {
     return todosStore.todos.filter(t => t.status === 'Completed');
   }
 
-
-
   return todosStore.todos;
-
 })
 
 onMounted(() => {
@@ -106,8 +103,8 @@ onMounted(() => {
 
     <UAlert
       v-else
-      description="The to-do list is currently empty, but you can add new tasks at any time."
-      title="Heads up!"
+      description="This to-do list is currently empty, but you can add new tasks at any time."
+      title="This list is empty!"
     />
   </div>
 </template>

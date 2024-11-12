@@ -1,6 +1,6 @@
 <script setup>
 
-import { todoCompletionStatuses, todoPriorityStatusesStyles } from "~/config/statuses.js";
+import { todoCompletionStatuses, todoPriorityStatusesStyles, todoCompletionStatusesStyles } from "~/config/statuses.js";
 
 const props = defineProps({
   title: {
@@ -54,6 +54,7 @@ function toggleFavorite() {
     <div class="flex flex-col md:flex-row justify-between">
       <div class="flex items-center gap-2">
         <UButton
+          :disabled="displayOnly"
           v-show="isFavorite"
           class="min-w-[44px] flex justify-center items-center"
           size="xl"
@@ -63,6 +64,7 @@ function toggleFavorite() {
           @click="toggleFavorite"
         />
         <UButton
+          :disabled="displayOnly"
           v-show="!isFavorite"
           class="min-w-[44px] flex justify-center items-center"
           icon="i-heroicons-star"
@@ -88,14 +90,29 @@ function toggleFavorite() {
       </div>
 
       <div class="flex items-center gap-2">
-        <USelect
-          :disabled="displayOnly"
-          class="flex-1 md:flex-auto"
+        <USelectMenu
           v-model="currentTodoStatus"
+          :disabled="displayOnly"
+          class="flex-1 md:flex-auto min-w-[160px]"
           :options="todoCompletionStatuses"
           option-attribute="name"
           @change="onTodoStatusChange"
-        />
+        >
+          <template #leading>
+            <div
+              class="rounded-r-lg w-[4px] h-[22px] mr-1"
+              :style="{ 'background': todoCompletionStatusesStyles[currentTodoStatus].color }"></div>
+          </template>
+
+          <template #option="{ option: option }">
+            <div
+              class="rounded-r-lg w-[4px] h-[22px] mr-1"
+              :style="{ 'background': todoCompletionStatusesStyles[option].color }"
+            ></div>
+            {{ option }}
+          </template>
+        </USelectMenu>
+
         <UButton
           :disabled="displayOnly"
           size="xl"
